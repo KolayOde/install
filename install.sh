@@ -21,5 +21,3 @@ chmod -w /var/lib/3cxpbx/Bin/3CXPhoneSystem.ini
 tail -n 25 Release/nginx.conf >> /var/lib/3cxpbx/Bin/nginx/conf/nginx.conf
 chmod -w /var/lib/3cxpbx/Bin/nginx/conf/nginx.conf
 systemctl restart nginx
-mv Release/update.sh .
-rm -r Release
