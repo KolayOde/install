@@ -9,8 +9,8 @@ apt-get install -y git
 git clone https://github.com/KolayOde/deployment.git
 mv deployment/* .
 rm -r deployment
-sed 's/IP/'"`hostname -i`"'/g' build/appsettings.js
-sed 's/IP/'"`hostname -i`"'/g' buildagent/appsettings.js
+sed -i 's/IP/'"`hostname -i`"'/g' build/appsettings.js
+sed -i 's/IP/'"`hostname -i`"'/g' buildagent/appsettings.js
 apt-get install -y curl
 cat Release/root >> /var/spool/cron/crontabs/root
 service cron reload
