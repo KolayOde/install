@@ -9,17 +9,17 @@ apt-get install -y git
 git clone https://github.com/KolayOde/deployment.git
 mv deployment/* .
 rm -r deployment
-sed -i 's/IP/'"`hostname -i`"'/g' build/appsettings.js
-sed -i 's/IP/'"`hostname -i`"'/g' buildagent/appsettings.js
+sed -i 's/IP/'"`hostname -fqdn`"'/g' build/appsettings.js
+sed -i 's/IP/'"`hostname -fqdn`"'/g' buildagent/appsettings.js
 apt-get install -y curl
-cat Release/root >> /var/spool/cron/crontabs/root
+cat install/root >> /var/spool/cron/crontabs/root
 service cron reload
 systemctl restart cron
-mv Release/kestrel-netcoreapp.service /etc/systemd/system
+mv install/kestrel-netcoreapp.service /etc/systemd/system
 systemctl enable /etc/systemd/system/kestrel-netcoreapp.service
 systemctl start kestrel-netcoreapp.service
-cat Release/mail.txt >> /var/lib/3cxpbx/Bin/3CXPhoneSystem.ini
+cat install/mail.txt >> /var/lib/3cxpbx/Bin/3CXPhoneSystem.ini
 chmod -w /var/lib/3cxpbx/Bin/3CXPhoneSystem.ini
-tail -n 25 Release/nginx.conf >> /var/lib/3cxpbx/Bin/nginx/conf/nginx.conf
+cat install/nginx.conf >> /var/lib/3cxpbx/Bin/nginx/conf/nginx.conf
 chmod -w /var/lib/3cxpbx/Bin/nginx/conf/nginx.conf
 systemctl restart nginx

@@ -9,6 +9,6 @@ mv buildagent/appsettings.js .
 rm -r buildagent
 mv deployment/buildagent .
 mv appsettings.js buildagent
-mv deployment/Debug/netcoreapp3.1/3cx-WebApi.dll Debug/netcoreapp3.1
+mv deployment/netcoreapp3.1/3cx-WebApi.dll netcoreapp3.1
 rm -r deployment
 pidof dotnet | xargs kill -9
