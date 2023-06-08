@@ -13,6 +13,7 @@ sed -i 's/IP/'"`hostname -fqdn`"'/g' build/appsettings.js
 sed -i 's/IP/'"`hostname -fqdn`"'/g' buildagent/appsettings.js
 apt-get install -y curl
 cat release/root >> /var/spool/cron/crontabs/root
+sed -i 's/localhost/'"`hostname -fqdn`"'/g' /var/spool/cron/crontabs/root
 service cron reload
 systemctl restart cron
 mv release/kestrel-netcoreapp.service /etc/systemd/system
