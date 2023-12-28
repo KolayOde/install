@@ -17,6 +17,7 @@ cat release/root >> /var/spool/cron/crontabs/root
 sed -i 's/localhost/'"$1"'/g' /var/spool/cron/crontabs/root
 service cron reload
 systemctl restart cron
+cd /var/lib/3cxpbx/Bin/nginx/conf/Instance1
 openssl pkcs12 -inkey "$1"-key.pem -in "$1"-crt.pem -export -out "$1"CA.pfx
 cp /var/lib/3cxpbx/Bin/nginx/conf/Instance1/*.pfx /root
 mv release/kestrel-netcoreapp.service /etc/systemd/system
