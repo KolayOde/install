@@ -1,10 +1,13 @@
 #! /bin/sh
 cd /home
 echo deb http://deb.debian.org/debian/ buster main >> /etc/apt/sources.list
+#echo deb http://deb.debian.org/debian/ buster main >> /etc/apt/sources.list
 wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb
+#wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb
 dpkg --install packages-microsoft-prod.deb
 apt-get update
 apt-get install -y dotnet-sdk-3.1
+#apt-get install -y dotnet-sdk-8.0
 apt-get install -y git
 git clone https://github.com/KolayOde/deployment.git
 mv deployment/* .
