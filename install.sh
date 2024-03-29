@@ -1,10 +1,13 @@
 #! /bin/sh
 cd /home
-echo deb http://deb.debian.org/debian/ Bookworm main >> /etc/apt/sources.list
-wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb
+echo deb http://deb.debian.org/debian/ buster main >> /etc/apt/sources.list
+#echo deb http://deb.debian.org/debian/ buster main >> /etc/apt/sources.list
+wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb
+#wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb
 dpkg --install packages-microsoft-prod.deb
 apt-get update
-apt-get install -y dotnet-sdk-8.0
+apt-get install -y dotnet-sdk-3.1
+#apt-get install -y dotnet-sdk-8.0
 apt-get install -y git
 git clone https://github.com/KolayOde/deployment.git
 mv deployment/* .
@@ -20,10 +23,9 @@ systemctl restart cron
 cd /var/lib/3cxpbx/Bin/nginx/conf/Instance1
 openssl pkcs12 -inkey "$1"-key.pem -in "$1"-crt.pem -export -out "$1"CA.pfx
 cp /var/lib/3cxpbx/Bin/nginx/conf/Instance1/*.pfx /root
-cd /home
-mv release/kestrel.service /etc/systemd/system
-systemctl enable /etc/systemd/system/kestrel.service
-systemctl start kestrel.service
+mv release/kestrel-netcoreapp.service /etc/systemd/system
+systemctl enable /etc/systemd/system/kestrel-netcoreapp.service
+systemctl start kestrel-netcoreapp.service
 cat release/mail>> /var/lib/3cxpbx/Bin/3CXPhoneSystem.ini
 chmod -w /var/lib/3cxpbx/Bin/3CXPhoneSystem.ini
 cat release/nginx >> /var/lib/3cxpbx/Bin/nginx/conf/nginx.conf
