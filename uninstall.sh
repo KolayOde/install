@@ -4,6 +4,8 @@ apt-get remove curl
 apt-get remove dotnet-sdk-3.1
 dpkg --purge packages-microsoft-prod
 apt-get autoremove
+nano /etc/apt/sources.list
+apt-get update
 ps -ef | grep dotnet
 kill -9 13213
 crontab -e
@@ -12,7 +14,9 @@ rm /etc/systemd/system/kestrel-netcoreapp.service
 rm /etc/systemd/system/multi-user.target.wants/kestrel-netcoreapp.service
 systemctl daemon-reload
 rm /root/*.pfx
-rm /var/lib/3cx/Bin/nginx/conf/Instance1/*.pfx
-chmod +w /var/lib/3cx/Bin/nginx/conf/nginx.conf 
+rm /var/lib/3cxpbx/Bin/nginx/conf/Instance1/*.pfx
+nano /var/lib/3cxpbx/Bin/3CXPhoneSystem.ini
+nano /var/lib/3cxpbx/Bin/nginx/conf/nginx.conf
+chmod +w /var/lib/3cxpbx/Bin/nginx/conf/nginx.conf 
 systemctl restart nginx
 systemctl restart nftables
