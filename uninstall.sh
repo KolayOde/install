@@ -1,15 +1,14 @@
-apt-get remove packages-microsoft-prod
+apt-get remove -y packages-microsoft-prod
+apt-get remove -y dotnet-sdk-3.1
 apt-get remove git
 apt-get remove curl
-apt-get remove dotnet-sdk-3.1
 dpkg --purge packages-microsoft-prod
 apt-get autoremove
 nano /etc/apt/sources.list
 rm /etc/apt/sources.list.d/microsoft-prod.list
 apt-get update
-ps -ef | grep dotnet
-kill -9 13213
-crontab -e
+kill $(ps aux | grep 'dotnet' | awk '{print $2}')
+rm /var/spool/cron/root
 service cron reload
 rm /etc/systemd/system/kestrel-netcoreapp.service
 rm /etc/systemd/system/multi-user.target.wants/kestrel-netcoreapp.service
