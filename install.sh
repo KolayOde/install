@@ -1,6 +1,6 @@
 #! /bin/sh
 cd /home
-echo deb http://deb.debian.org/debian/ bookworm main >> /etc/apt/sources.list
+echo deb http://deb.debian.org/debian/bookworm main >> /etc/apt/sources.list
 wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb
 dpkg --install packages-microsoft-prod.deb
 apt-get update
