@@ -19,5 +19,9 @@ rm /var/lib/3cxpbx/Bin/nginx/conf/Instance1/*.pfx
 nano /var/lib/3cxpbx/Bin/3CXPhoneSystem.ini
 nano /var/lib/3cxpbx/Bin/nginx/conf/nginx.conf
 chmod +w /var/lib/3cxpbx/Bin/nginx/conf/nginx.conf 
+sed -i '95s/md5/peer/g' /etc/postgresql/15/main/pg_hba.conf
+sed -i 's/443,3000,3005,/443,/g' /var/lib/3cxpbx/Bin/nftables.conf
+nft list ruleset
+systemctl restart postgresql 
 systemctl restart nginx
 systemctl restart nftables
