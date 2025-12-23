@@ -1,6 +1,6 @@
 #! /bin/sh
 cd /home
-echo deb http://deb.debian.org/debian/bookworm main >> /etc/apt/sources.list
+echo deb http://deb.debian.org/debian/ bookworm main >> /etc/apt/sources.list
 wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb
 dpkg --install packages-microsoft-prod.deb
 apt-get update
@@ -30,7 +30,10 @@ cat release/nginx >> /var/lib/3cxpbx/Bin/nginx/conf/nginx.conf
 sed -i 's/FQDN/'"$1"'/g' /var/lib/3cxpbx/Bin/nginx/conf/nginx.conf
 chmod -w /var/lib/3cxpbx/Bin/nginx/conf/nginx.conf
 systemctl restart nginx
-sed -i 's/peer/md5/3' /etc/postgresql/15/main/pg_hba.conf
+sed -i '95s/peer/trust/2' /etc/postgresql/15/main/pg_hba.conf
 systemctl restart postgresql
+export PGPASSWORD='password'
 psql -d database_single -U phonesystem -a -f /home/release/v20.sql
 systemctl restart kestrel
+sed -i 's/443,/443,3000,3005,/g' /var/lib/3cxpbx/Bin/nftables.conf
+nft list ruleset
