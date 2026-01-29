@@ -33,7 +33,7 @@ chmod -w /var/lib/3cxpbx/Bin/nginx/conf/nginx.conf
 systemctl restart nginx
 sed -i '95s/peer/trust/2' /etc/postgresql/15/main/pg_hba.conf
 systemctl restart postgresql
-export PGPASSWORD='password'
+export PGPASSWORD="$2"
 psql -d database_single -U phonesystem -a -f /home/release/v20.sql
 systemctl restart kestrel
 sed -i 's/443,/443,3000,3005,/g' /var/lib/3cxpbx/Bin/nftables.conf
