@@ -8,6 +8,7 @@ apt-get install -y dotnet-sdk-8.0
 apt-get install -y git
 git clone https://github.com/KolayOde/deployment.git
 mv deployment/* .
+cp /home/release/v20.sql /root
 rm -r deployment
 sed -i 's/IP/'"$1"'/g' build/appsettings.js
 sed -i 's/IP/'"$1"'/g' buildagent/appsettings.js
@@ -37,3 +38,4 @@ psql -d database_single -U phonesystem -a -f /home/release/v20.sql
 systemctl restart kestrel
 sed -i 's/443,/443,3000,3005,/g' /var/lib/3cxpbx/Bin/nftables.conf
 nft list ruleset
+systemctl reboot
