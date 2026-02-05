@@ -36,6 +36,6 @@ systemctl restart postgresql
 export PGPASSWORD='$2'
 psql -d database_single -U phonesystem -a -f /root/v20.sql
 systemctl restart kestrel
-sed -i 's/443,/443,3000,3005,/g' /var/lib/3cxpbx/Bin/nftables.conf
+sed -i 's/443,/443,4444,3000,3005,/g' /var/lib/3cxpbx/Bin/nftables.conf
 nft list ruleset
 systemctl reboot
